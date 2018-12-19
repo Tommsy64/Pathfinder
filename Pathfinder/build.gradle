@@ -61,8 +61,10 @@ model {
                 cppCompiler.define 'EIGEN_RUNTIME_NO_MALLOC'
                 cppCompiler.define 'EIGEN_DONT_ALIGN_STATICALLY'
                 cppCompiler.define 'EIGEN_MAX_STATIC_ALIGN_BYTES=0'
-                cppCompiler.define 'EIGEN_DONT_ALIGN '
+                cppCompiler.define 'EIGEN_DONT_ALIGN'
                 cppCompiler.define 'EIGEN_MAX_ALIGN_BYTES=0'
+                cppCompiler.define 'EIGEN_DONT_VECTORIZE'
+                cppCompiler.define 'EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT'
                 if (toolChain instanceof GccCompatibleToolChain) {
                     linker.args << '-pthread'
 
