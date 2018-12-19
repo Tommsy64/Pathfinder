@@ -59,6 +59,7 @@ model {
             
             binaries.all {
                 cppCompiler.define 'EIGEN_RUNTIME_NO_MALLOC'
+                cppCompiler.define 'EIGEN_DONT_ALIGN_STATICALLY'
                 if (toolChain instanceof GccCompatibleToolChain) {
                     linker.args << '-pthread'
 
@@ -66,10 +67,6 @@ model {
                         cppCompiler.args << '-fsanitize=address'
                         linker.args << '-fsanitize=address'
                     }
-                } else {
-                    // Windows breaks Eigen's static alignment. Seems to be a compiler bug.
-                    // https://forum.kde.org/viewtopic.php?f=74&t=97995&sid=cd769a78f5b8b159239b9f032e2b7432
-                    cppCompiler.define 'EIGEN_DONT_ALIGN_STATICALLY'
                 }
             }
 
